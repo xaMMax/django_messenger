@@ -1,0 +1,30 @@
+{% extends 'base_generic.html' %}
+{% load custom_tags %}
+
+{% block content %}
+  <h1>{{ chat.name }}</h1>
+  <ul>
+    {% for message in messages %}
+      <li>
+        <strong>{{ message.author.username }}:</strong>
+        <p>{{ message.content }}</p>
+        <small>{{ message.created_at }}</small>
+        {% if request.user == message.author %}
+          <a href="{% url 'edit_message' message.id %}">Edit</a>
+          <a href="{% url 'delete_message' message.id %}">Delete</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Send a message</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send</button>
+  </form>
+
+    {% if user|has_permission:'messenger.can_add_users' %}
+        <a href="{% url 'add_user_to_chat' chat.id %}">Add user to chat</a>
+    {% endif %}
+{% endblock %}

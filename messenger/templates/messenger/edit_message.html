@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Edit Message</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+  </form>
+  <a href="{% url 'chat_detail' message.chat.id %}">Back to chat</a>
+{% endblock %}

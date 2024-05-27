@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Add User to Chat: {{ chat.name }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <button type="submit">Add</button>
+  </form>
+  <a href="{% url 'chat_detail' chat.id %}">Back to chat</a>
+{% endblock %}
