@@ -20,9 +20,10 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('messenger/', include('messenger.urls')),  # Включити URL-шляхи вашого додатку messenger
+    path('messenger/', include('messenger.urls')),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('accounts/', include('django.contrib.auth.urls')),  # Додати URL-адреси для аутентифікації
-    path('', include('messenger.urls')),  # Додати URL-шляхи для кореневого URL
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('messenger.urls')),
 ]
 

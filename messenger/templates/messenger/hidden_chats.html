@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+  <h1>Hidden Chats</h1>
+  <ul>
+    {% for hidden_chat in hidden_chats %}
+        {% if hidden_chat.hidden == True %}
+      <li>
+        {{ hidden_chat.chat.name }}
+        <form method="post" action="{% url 'unhide_chat' hidden_chat.chat.id %}">
+          {% csrf_token %}
+          <button type="submit">Unhide</button>
+        </form>
+      </li>
+        {% endif %}
+    {% endfor %}
+  </ul>
+{% endblock %}

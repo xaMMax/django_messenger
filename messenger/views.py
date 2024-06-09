@@ -1,84 +1,130 @@
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required, permission_required
-from .models import Chat, Message
-from .forms import MessageForm, ChatForm
-from django.utils import timezone
-from datetime import timedelta
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+
+from .mixins import ChatListMixin, ChatDetailMixin, CreateChatMixin, AddUserToChatMixin, EditMessageMixin, \
+    DeleteMessageMixin, UpdateTimestampMixin, JSONResponseMixin, SuccessMessageMixin, AdminRequiredMixin, \
+    FormInitialDataMixin
+from .models import Chat, Message, HiddenChat
+from .forms import MessageForm
+
+
+class ChatListView(ChatListMixin, ListView):
+    model = Chat
+    template_name = 'messenger/chat_list.html'
+    context_object_name = 'chats'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['hidden_chats'] = HiddenChat.objects.filter(user=self.request.user).select_related('chat')
+        return context
+
+    def get_queryset(self):
+        return self.get_chats()
+
+
+class HiddenChatListView(ChatListMixin, ListView):
+    model = Chat
+    template_name = 'messenger/hidden_chats.html'
+    context_object_name = 'chats'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['hidden_chats'] = HiddenChat.objects.filter(user=self.request.user).select_related('chat')
+        return context
+
+    def get_queryset(self):
+        return self.get_chats()
 
 
 @login_required
-def chat_list(request):
-    chats = Chat.objects.filter(users=request.user)
-    return render(request, 'messenger/chat_list.html', {'chats': chats})
-
-
-@login_required
-def chat_detail(request, chat_id):
+def hide_chat(request, chat_id):
     chat = get_object_or_404(Chat, id=chat_id)
-    if request.user not in chat.users.all():
-        return redirect('chat_list')
+    chat.hidden = True
+    chat.save()
+    HiddenChat.objects.get_or_create(user=request.user, chat=chat, hidden=True)
+    return redirect('chat_list')
 
-    messages = chat.messages.all()
-    if request.method == 'POST':
+
+@login_required
+def unhide_chat(request, chat_id):
+    chat = get_object_or_404(Chat, id=chat_id)
+    chat.hidden = False
+    chat.save()
+    HiddenChat.objects.filter(user=request.user, chat=chat).delete()
+    return redirect('chat_list')
+
+
+class ChatDetailView(ChatDetailMixin, DetailView):
+    model = Chat
+    template_name = 'messenger/chat_detail.html'
+    context_object_name = 'chat'
+    pk_url_kwarg = 'pk'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['messages'] = self.chat.messages.all()
+        context['form'] = MessageForm()
+        context['users'] = self.chat.users.all()
+        return context
+
+    def post(self, request, *args, **kwargs):
         form = MessageForm(request.POST)
         if form.is_valid():
             message = form.save(commit=False)
-            message.chat = chat
+            message.chat = self.chat
             message.author = request.user
             message.save()
-            return redirect('chat_detail', chat_id=chat.id)
-    else:
-        form = MessageForm()
-
-    return render(request, 'messenger/chat_detail.html', {'chat': chat, 'messages': messages, 'form': form})
+            return redirect('chat_detail', pk=self.chat.pk)
+        return self.get(request, *args, **kwargs)
 
 
-@permission_required('messenger.can_create_chat')
-def create_chat(request):
-    if request.method == 'POST':
-        form = ChatForm(request.POST)
-        if form.is_valid():
-            chat = form.save()
-            chat.users.add(request.user)
-            return redirect('chat_list')
-    else:
-        form = ChatForm()
-    return render(request, 'messenger/create_chat.html', {'form': form})
+class CreateChatView(FormInitialDataMixin, CreateChatMixin, ):
+    success_message = "Chat created successfully"
+    success_url = reverse_lazy('chat_list')
+    initial_data = {'name': 'Default Chat Name'}
 
 
-@permission_required('messenger.can_add_users')
-def add_user_to_chat(request, chat_id):
-    chat = get_object_or_404(Chat, id=chat_id)
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        user = get_object_or_404(User, username=username)
-        chat.users.add(user)
-        return redirect('chat_detail', chat_id=chat.id)
-    return render(request, 'messenger/add_user.html', {'chat': chat})
+class AddUserToChatView(AddUserToChatMixin):
+    success_url = reverse_lazy('chat_detail')
 
 
-@login_required
-def edit_message(request, message_id):
-    message = get_object_or_404(Message, id=message_id)
-    if request.user != message.author or timezone.now() - message.created_at > timedelta(days=1):
-        return redirect('chat_detail', chat_id=message.chat.id)
-    if request.method == 'POST':
-        form = MessageForm(request.POST, instance=message)
-        if form.is_valid():
-            form.save()
-            return redirect('chat_detail', chat_id=message.chat.id)
-    else:
-        form = MessageForm(instance=message)
-    return render(request, 'messenger/edit_message.html', {'form': form, 'message': message})
+class EditMessageView(UpdateTimestampMixin, EditMessageMixin, UpdateView):
+    model = Message
+    form_class = MessageForm
+    template_name = 'messenger/edit_message.html'
+    pk_url_kwarg = 'message_id'
+
+    def get_success_url(self):
+        return reverse_lazy('chat_detail', kwargs={'pk': self.message.chat.pk})
 
 
-@login_required
-def delete_message(request, message_id):
-    message = get_object_or_404(Message, id=message_id)
-    if request.user != message.author:
-        return redirect('chat_detail', chat_id=message.chat.id)
-    if request.method == 'POST':
-        message.delete()
-        return redirect('chat_detail', chat_id=message.chat.id)
-    return render(request, 'messenger/delete_message.html', {'message': message})
+class DeleteMessageView(DeleteMessageMixin, DeleteView):
+    model = Message
+    template_name = 'messenger/delete_message.html'
+    pk_url_kwarg = 'message_id'
+
+    def get_success_url(self):
+        return reverse_lazy('chat_detail', kwargs={'pk': self.message.chat.pk})
+
+
+class ChatMessagesJSONView(AdminRequiredMixin, JSONResponseMixin, View):
+    def get(self, request, *args, **kwargs):
+        chat_id = kwargs.get('pk')
+        chat = Chat.objects.get(pk=chat_id)
+        messages = chat.messages.all()
+        data = {
+            'messages': [
+                {
+                    'chat_name': message.chat.name,
+                    'author': message.author.username,
+                    'content': message.content,
+                    'created_at': message.created_at,
+                    'updated_at': message.updated_at,
+                } for message in messages
+            ]
+        }
+        return self.render_to_json_response(data)

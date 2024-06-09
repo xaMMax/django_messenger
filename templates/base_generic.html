@@ -11,16 +11,18 @@
     <header>
         <h1>My Messenger</h1>
         <nav>
-            <ul>
-                <li><a href="{% url 'chat_list' %}">Chats</a></li>
-                {% if user.is_authenticated %}
-                    <li><h2> {{ user.username }} </h2></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-{#                    <p>logout</p>#}
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-{#                    <p>login</p>#}
-                {% endif %}
+            <a>
+
+                    {% if user.is_authenticated %}
+                      <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+                        <li><a href="{% url 'chat_list' %}">Chats</a></li>
+                        <li><a href="{% url 'hidden_chats' %}">Hidden</a></li>
+
+                    {% else %}
+{#                      <p>You are not logged in. <a href="{% url 'login' %}?redirect_to={{ request.path }}">Login</a></p>#}
+                        <p>You are not logged in. </p>
+
+                    {% endif %}
             </ul>
         </nav>
     </header>

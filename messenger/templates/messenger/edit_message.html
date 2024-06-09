@@ -1,11 +1,13 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-  <h1>Edit Message</h1>
+  <h2>Edit Message</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Save changes</button>
   </form>
-  <a href="{% url 'chat_detail' message.chat.id %}">Back to chat</a>
+  {% if message.updated_at != message.created_at %}
+    <p>This message has been edited.</p>
+  {% endif %}
 {% endblock %}
