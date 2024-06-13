@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'messenger.middleware.ActiveUserMiddleware',
+
 ]
 
 ROOT_URLCONF = 'django_messenger.urls'
@@ -65,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'messenger.context_processors.random_color'
             ],
         },
     },
@@ -144,3 +147,12 @@ CACHES = {
         'LOCATION': 'unique-snowflake',
     }
 }
+# Час життя сесії у секундах (наприклад, 15 хвилин)
+SESSION_COOKIE_AGE = 1800
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_SAVE_EVERY_REQUEST = True
+
+SESSION_COOKIE_SECURE = False
+

@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import ChatListView, ChatDetailView, CreateChatView, AddUserToChatView, EditMessageView, DeleteMessageView, \
-    ChatMessagesJSONView, hide_chat, unhide_chat, HiddenChatListView
+    ChatMessagesJSONView, hide_chat, unhide_chat, HiddenChatListView, UserProfileView
 
 urlpatterns = [
     path('', ChatListView.as_view(), name='chat_list'),
@@ -13,5 +13,7 @@ urlpatterns = [
     path('chat/<int:pk>/json/', ChatMessagesJSONView.as_view(), name='chat_messages_json'),
     path('', ChatListView.as_view(), name='chat_list'),
     path('chat/<int:chat_id>/hide/', hide_chat, name='hide_chat'),
-    path('chat/<int:chat_id>/unhide/', unhide_chat, name='unhide_chat')
+    path('chat/<int:chat_id>/unhide/', unhide_chat, name='unhide_chat'),
+    path('profile/<int:pk>/', UserProfileView.as_view(), name='user_profile')
+
 ]

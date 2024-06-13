@@ -1,0 +1,59 @@
+{% extends "base_generic.html" %}
+{% load custom_tags %}
+{% block messages %}
+{#    <h1>History</h1>#}
+{% endblock %}
+{% block content %}
+{#            <a href="{% url 'user_profile' pk=user.pk %}">{{ user.user.username }}</a>#}
+
+    <h1>{{ user_profile.username }}'s Profile</h1>
+    <p>Email: {{ user_profile.email }}</p>
+    <p>First Name: {{ user_profile.first_name }}</p>
+    <p>Last Name: {{ user_profile.last_name }}</p>
+
+    <!-- Додаткова інформація про користувача -->
+    
+    <h2>Send a Private Message</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+
+    {% if request.user == user_profile %}
+        <h2>Incoming Messages</h2>
+        <ul>
+            {% for message in received_messages %}
+                <li class="messagelist_inc">
+                    <strong>From {{ message.sender.username }}:</strong>
+                    <p>{{ message.content }}</p>
+                    <small>{{ message.created_at }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Sent Messages</h2>
+        <ul>
+            {% for message in sent_messages %}
+                <li class="messagelist">
+                    <strong>To {{ message.recipient.username }}:</strong>
+                    <p>{{ message.content }}</p>
+                    <small>{{ message.created_at }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>Sent Messages</h2>
+        <ul>
+            {% for message in sent_messages %}
+                <li class="messagelist">
+                    <strong>To {{ message.recipient.username }}:</strong>
+                    <p>{{ message.content }}</p>
+                    <small>{{ message.created_at }}</small>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <a href="{% url 'chat_list' %}">Back to Chat List</a>
+{% endblock %}

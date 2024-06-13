@@ -6,7 +6,11 @@
     {% for chat in chats %}
         {% if chat.hidden == False %}
       <li>
-        <a href="{% url 'chat_detail' chat.id %}">{{ chat.name }}</a>
+        <a href="{% url 'chat_detail' chat.id %}">
+            <h4>
+                {{ chat.name }}
+            </h4>
+        </a>
         <form method="post" action="{% url 'hide_chat' chat.id %}">
           {% csrf_token %}
           <button type="submit">Hide</button>

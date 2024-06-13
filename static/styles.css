@@ -69,6 +69,17 @@ a{
     padding: 8px;
     margin: 4px;
 }
+
+.messagelist_inc {
+    border-width: medium;
+    border-color: #4f4f4f;
+    border-radius: 16px;
+    background-color: #b9f39d;
+    width: fit-content;
+    padding: 8px;
+    margin: 4px;
+}
+
 .messageform {
     border-width: medium;
     border-color: #4f4f4f;
@@ -101,4 +112,84 @@ a{
     background-color: #f2dede;
     border-color: #ebccd1;
     color: #a94442;
+}
+
+.messages li.warning {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+
+.messages li.info {
+    background-color: #9ec7e5;
+    border-color: #d0e9c6;
+    color: #2f79ff;
+}
+
+.chat_view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+.chat_name {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.chat_body {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+}
+
+.chat_messages {
+    flex: 3;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.chat_participants {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+
+.send_message_div {
+    flex: 0 0 auto;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.send_message_form {
+    width: 80%;
+    margin: 16px;
+    border-radius: 16px;
+    height: auto;
+    text-align: left;
+    font-size: 20px;
+    padding: 16px;
+
+}
+
+.actions {
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.online-user {
+    color: green;
+}
+.offline-user {
+    color: gray;
 }
