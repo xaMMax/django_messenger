@@ -1,27 +1,15 @@
 from datetime import timedelta
 
-from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, AccessMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import timezone
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
-from django.views.generic import ListView, DetailView, CreateView, FormView
+
+from django.views.generic import ListView, CreateView, FormView
 
 from messenger.forms import ChatForm, AddUserForm
 from messenger.models import Chat, Message, HiddenChat
-
-
-class SuccessMessageMixin:
-    success_message = ''
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        if self.success_message:
-            messages.success(self.request, self.success_message)
-        return response
 
 
 class ChatListMixin(LoginRequiredMixin, ListView):
@@ -37,6 +25,11 @@ class ChatListMixin(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['chats'] = Chat.objects.filter(users=self.request.user)
         return context
+
+
+class SuperuserRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class ChatDetailMixin(LoginRequiredMixin):
@@ -144,3 +137,10 @@ class FormInitialDataMixin:
         initial = super().get_initial()
         initial.update(self.initial_data)
         return initial
+
+
+class ProfileOwnerRequiredMixin:
+    def dispatch(self, request, *args, **kwargs):
+        if self.get_object() != request.user:
+            raise PermissionDenied("You do not have permission to view this profile.")
+        return super().dispatch(request, *args, **kwargs)

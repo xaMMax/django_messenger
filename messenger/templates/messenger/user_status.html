@@ -1,0 +1,14 @@
+<div class="user-status">
+    <h3>Online Users</h3>
+    <ul>
+        {% for user in online_users %}
+            <li class="online-user"><p>{{ user }}</p></li>
+        {% endfor %}
+    </ul>
+    <h3>Offline Users</h3>
+    <ul>
+        {% for user in offline_users %}
+            <li class="offline-user"><p>{{ user }}</p></li>
+        {% endfor %}
+    </ul>
+</div>

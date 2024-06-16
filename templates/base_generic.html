@@ -4,34 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Messenger{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>  .random-color-text {color: {{ random_color }}} </style>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title>{% block title %}
+        {% if user.is_authenticated %}
+            {{ user.username }} | Messenger
+        {% else %}
+            Messenger | Login Page
+        {% endif %}
+    {% endblock %}</title>
 </head>
 <body>
-    <header>
+    <header class="header-general">
+    <div class="messenger-name">
         <h1>My Messenger</h1>
-        <nav>
-            <a>
-
-                    {% if user.is_authenticated %}
-                      <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
-                        <li><a href="{% url 'chat_list' %}">Chats</a></li>
-                        <li><a href="{% url 'hidden_chats' %}">Hidden</a></li>
-
-                    {% else %}
-{#                      <p>You are not logged in. <a href="{% url 'login' %}?redirect_to={{ request.path }}">Login</a></p>#}
-                        <p>You are not logged in. </p>
-
-                    {% endif %}
-            </ul>
-        </nav>
+    </div>
+    <div class="user-name">
+        {% if user.is_authenticated %}
+        <p>
+            Welcome, <a href="{% url 'user_profile' pk=user.pk %}">{{ user.username }}</a>
+            | <a href="{% url 'logout' %}">Logout</a>
+        </p>
+        {% else %}
+        <p>You are not logged in. </p>
+        {% endif %}
+    </div>
+    <!-- /.user-name -->
+    <!-- /.messenger-name -->
     </header>
     <main>
+        {% block messages %}
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endblock %}
+
         {% block content %}
         {% endblock %}
+
+        {% block user_status %}
+        {% endblock %}
+
     </main>
     <footer>
-        <p>&copy; 2024 My Messenger</p>
+        <p class="random-color-text">&copy; 2024 My Messenger</p>
     </footer>
 </body>
 </html>
