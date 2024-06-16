@@ -1,64 +1,50 @@
+<!-- У файлі templates/messenger/chat_detail.html -->
 
 {% extends "base_generic.html" %}
 {% load custom_tags %}
-{% block messages %}
-{#    <h1>History</h1>#}
-{% endblock %}
 
 {% block content %}
-    <div class="chat-detail-general">
-        <div class="chat_view">
-            <div class="chat_name">
-                <h2>Chat: {{ chat.name }}</h2>
-                <a href="{% url 'chat_list' %}" class="block_link">Back to Chat List</a>
-            </div>
-            <div class="chat_body">
-                <div class="chat_messages">
-                    <h3>Messages</h3>
-                    <ul>
-                    {% for message in messages %}
-                        <li class="messagelist">
-                        <small>{{ message.author.username }}:</small>
-                        <p>{{ message.message }}</p>
-                    {% if message.created_at|compare_datas:message.updated_at %}
-                        <small style="font-style: italic">edited {{ message.updated_at }}</small>
-                    {% else %}
-                        <small>{{ message.created_at }}</small>
-                    {% endif %}
-                    {% if request.user == message.author %}
-                        <a href="{% url 'edit_message' message.id %}" style="color: blue">Edit</a>
-                        <a href="{% url 'delete_message' message.id %}" style="color: red">Delete</a>
-                    {% endif %}
-                        </li>
-                    {% endfor %}
-                    </ul>
-                </div>
-                    <div class="chat_participants">
-                    {% include "messenger/user_status.html" %}
-                    </div>
-            </div>
-    
-            <!-- /.chat_partisipants -->
-        </div>
-    {#        </div>#}
-            <div class="send_message_div">
-                <h3>Send a message</h3>
-                <form method="post" class="send_message_form">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="button" type="submit">Send</button>
-                </form>
-            </div>
-        <!-- /.chat_partisipants -->
-        <div class="actions">
-            {% if request.user|has_permission:'messenger.can_add_users' %}
-                <a href="{% url 'add_user_to_chat' pk=chat.pk %}">Add user to chat</a>
+  <h2>{{ chat.name }}</h2>
+
+  <h3>Chat members</h3>
+  <ul>
+    {% for user in users %}
+      <li>{{ user.username }}</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Messages</h3>
+  <ul>
+    {% for message in messages %}
+      <li class="messagelist">
+        <small>{{ message.author.username }}:</small>
+        <p>{{ message.content }}</p>
+          {% if message.created_at|compare_datas:message.updated_at %}
+                <small style="font-style: italic">edited {{ message.updated_at }}</small>
+            {% else %}
+                <small>{{ message.created_at }}</small>
             {% endif %}
-            {% if user.is_staff %}
-                <a href="{% url 'chat_messages_json' pk=chat.pk %}">To JSON</a>
-            {% endif %}
-        </div>
-    </div>
-    <!-- /.chat-detail-general -->
-    
+
+      
+        {% if request.user == message.author %}
+          <a href="{% url 'edit_message' message.id %}" style="color: blue">Edit</a>
+          <a href="{% url 'delete_message' message.id %}" style="color: red">Delete</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Send a message</h3>
+  <form class="messageform" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button" type="submit">Send</button>
+  </form>
+
+  {% if request.user|has_permission:'messenger.can_add_users' %}
+    <a href="{% url 'add_user_to_chat' pk=chat.pk %}">Add user to chat</a>
+  {% endif %}
+    {% if user.is_staff %}
+    <a href="{% url 'chat_messages_json' pk=chat.pk %}">To JSON</a>
+    {% endif %}
 {% endblock %}
