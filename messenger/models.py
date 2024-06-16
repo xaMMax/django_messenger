@@ -7,7 +7,7 @@ from django.utils import timezone
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, unique=True)
     last_activity = models.DateTimeField(default=timezone.now)
 
     def is_online(self):

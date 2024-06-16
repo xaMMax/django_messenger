@@ -37,7 +37,7 @@
                     {% include "messenger/user_status.html" %}
                     </div>
             </div>
-    
+
             <!-- /.chat_partisipants -->
         </div>
     {#        </div>#}
@@ -58,7 +58,37 @@
                 <a href="{% url 'chat_messages_json' pk=chat.pk %}">To JSON</a>
             {% endif %}
         </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatId = {{ chat.id }};
+        const user = "{{ request.user.username }}";
+        const chatSocket = new WebSocket(
+            (window.location.protocol === 'https:' ? 'wss://' : 'ws://') + window.location.host + '/ws/chat/' + chatId + '/'
+        );
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const messageElement = document.createElement('li');
+            messageElement.innerHTML = `<strong>${data.author}:</strong> ${data.message}`;
+            document.querySelector('#messages').appendChild(messageElement);
+        };
+
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+
+        document.querySelector('#chat-message-form').onsubmit = function(e) {
+            e.preventDefault();
+            const messageInputDom = document.querySelector('#id_message');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+            messageInputDom.value = '';
+        };
+    });
+</script>
     </div>
     <!-- /.chat-detail-general -->
-    
+
 {% endblock %}

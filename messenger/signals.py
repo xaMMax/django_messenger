@@ -16,8 +16,8 @@ def log_user_activity(sender, instance, created, **kwargs):
 
 @receiver(pre_save, sender=User)
 def log_user_activity_pre(sender, instance, **kwargs):
-    default_email = instance.email or f"{instance.user}.nonreal@fakemail.com"
-    action = f"Set default email to {default_email} for user {instance.user}" if not instance.email else False
+    default_email = instance.email or f"{instance.username}.nonreal@fakemail.com"
+    action = f"Set default email to {default_email} for user {instance.username}" if not instance.email else False
     instance.email = instance.email or default_email
     if action:
         ActivityLog.objects.create(action=default_email)
@@ -33,13 +33,3 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
 
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.userprofile.save()

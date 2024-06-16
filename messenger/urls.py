@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import ChatListView, ChatDetailView, CreateChatView, AddUserToChatView, EditMessageView, DeleteMessageView, \
     ChatMessagesJSONView, hide_chat, unhide_chat, HiddenChatListView, UserProfileView, \
-    UserStatusList, DeleteChatView
+    UserStatusList, DeleteChatView, RegistrationView, ForgotPasswordView
 
 urlpatterns = [
     path('', ChatListView.as_view(), name='chat_list'),
@@ -17,5 +17,7 @@ urlpatterns = [
     path('profile/<int:pk>/', UserProfileView.as_view(), name='user_profile'),
     path('api/update-last-activity/', UserStatusList.as_view(), name='update_last_activity'),
     path('chat/<int:pk>/delete/', DeleteChatView.as_view(), name='delete_chat'),
+    path('registration/register/', RegistrationView.as_view(), name='register'),
+    path('forgot-password/', ForgotPasswordView.as_view(), name='forgot_password'),
 
 ]
