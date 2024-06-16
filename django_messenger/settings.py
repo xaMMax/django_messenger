@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'messenger.apps.MessengerConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -48,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'messenger.middleware.ActiveUserMiddleware',
+    'messenger.middleware.UpdateLastActivityMiddleware',
 
 ]
 
@@ -126,15 +127,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Налаштування для статичних файлів
-# STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'

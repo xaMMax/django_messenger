@@ -27,6 +27,11 @@ class ChatListMixin(LoginRequiredMixin, ListView):
         return context
 
 
+class SuperuserRequiredMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
 class ChatDetailMixin(LoginRequiredMixin):
     login_url = 'login'
     redirect_field_name = 'redirect_to'

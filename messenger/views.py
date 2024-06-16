@@ -1,24 +1,28 @@
 from datetime import timedelta
 
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
-from django.views.generic import ListView, DetailView, UpdateView, DeleteView, FormView
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView, FormView, TemplateView, CreateView
+from rest_framework import generics
 
 from .mixins import ChatListMixin, ChatDetailMixin, CreateChatMixin, AddUserToChatMixin, EditMessageMixin, \
     DeleteMessageMixin, UpdateTimestampMixin, JSONResponseMixin, AdminRequiredMixin, \
-    FormInitialDataMixin, ProfileOwnerRequiredMixin
+    FormInitialDataMixin, ProfileOwnerRequiredMixin, SuperuserRequiredMixin
 from .models import Chat, Message, HiddenChat, PrivateMessage, UserProfile
-from .forms import MessageForm, UserRegisterForm, ForgotPasswordForm, PrivateMessageForm
+from .forms import MessageForm, UserRegisterForm, ForgotPasswordForm, PrivateMessageForm, ChatForm
 from django.contrib.auth import get_user_model
+
+from .serializers import UserProfileSerializer
 
 User = get_user_model()
 
@@ -159,10 +163,23 @@ class ChatDetailView(ChatDetailMixin, DetailView):
         return self.get(request, *args, **kwargs)
 
 
-class CreateChatView(LoginRequiredMixin, FormInitialDataMixin, CreateChatMixin):
-    success_message = "Chat created successfully"
+class CreateChatView(LoginRequiredMixin, FormInitialDataMixin, CreateChatMixin, CreateView):
+    model = Chat
+    form_class = ChatForm
     success_url = reverse_lazy('chat_list')
     initial_data = {'name': 'Default Chat Name'}
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        chat_name = form.instance.name
+        messages.success(self.request, f'Chat "{chat_name}" successfully created!')
+        return response
+
+
+class DeleteChatView(LoginRequiredMixin, SuperuserRequiredMixin, DeleteView):
+    model = Chat
+    success_url = reverse_lazy('chat_list')
+    template_name = 'messenger/chat_confirm_delete.html'
 
 
 class AddUserToChatView(LoginRequiredMixin, AddUserToChatMixin):
@@ -222,6 +239,22 @@ class UserProfileView(LoginRequiredMixin, DetailView, FormView):
         else:
             context['received_messages'] = []
             context['sent_messages'] = PrivateMessage.objects.filter(sender=self.get_object())
+
+        # Отримання списку користувачів і перевірка їх статусу онлайн
+        now = timezone.now()
+        online_users = []
+        offline_users = []
+
+        for user in User.objects.all():
+            last_activity = user.userprofile.last_activity
+            if last_activity and (now - last_activity) < timedelta(minutes=5):
+                online_users.append(user)
+            else:
+                offline_users.append(user)
+
+        context['online_users'] = online_users
+        context['offline_users'] = offline_users
+
         return context
 
     def form_valid(self, form):
@@ -236,3 +269,16 @@ class UserProfileView(LoginRequiredMixin, DetailView, FormView):
     def form_invalid(self, form):
         messages.error(self.request, 'There was an error with your submission. Please try again.')
         return super().form_invalid(form)
+
+
+class UserStatusList(generics.ListAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('login')
+
+

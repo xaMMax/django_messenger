@@ -1,23 +1,36 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-  <h1>My Chats</h1>
-  <ul>
-    {% for chat in chats %}
-        {% if chat.hidden == False %}
-      <li>
-        <a href="{% url 'chat_detail' chat.id %}">
-            <h4>
-                {{ chat.name }}
-            </h4>
-        </a>
-        <form method="post" action="{% url 'hide_chat' chat.id %}">
-          {% csrf_token %}
-          <button type="submit">Hide</button>
-        </form>
-      </li>
-        {% endif %}
-    {% endfor %}
-  </ul>
-  <a href="{% url 'create_chat' %}">Create new chat</a>
+    <div class="chat_list">
+      <h1>My Chats</h1>
+          <ul>
+            {% for chat in chats %}
+                {% if chat.hidden == False %}
+              <li>
+                <a href="{% url 'chat_detail' chat.id %}">
+                    <h4>
+                        {{ chat.name }}
+                    </h4>
+                </a>
+              <div class="chat-buttons">
+                  <form method="post" action="{% url 'hide_chat' chat.id %}">
+                  {% csrf_token %}
+                    <button type="submit">Hide</button>
+                </form>
+                  {% if request.user.is_superuser %}
+                      <button type="reset">
+                      <a href="{% url 'delete_chat' pk=chat.pk %}" style="color: red">Delete Chat</a>
+                      </button>
+                  {% endif %}
+              </div>
+              <!-- /.chat-buttons -->
+              </li>
+                {% endif %}
+            {% endfor %}
+          </ul>
+          <a href="{% url 'create_chat' %}" class="block_link">Create new chat</a>
+    </div>
+    <!-- /.chat_list -->
+{% endblock %}
+{% block user_status %}
 {% endblock %}

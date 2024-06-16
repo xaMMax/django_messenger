@@ -1,3 +1,4 @@
+import datetime
 from datetime import timedelta
 
 from django.db import models
@@ -9,12 +10,12 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     last_activity = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
-        return self.user.username
-
     def is_online(self):
         now = timezone.now()
-        return self.last_activity >= now - timedelta(minutes=5)
+        return (now - self.last_activity) < timedelta(minutes=5)
+
+    def __str__(self):
+        return self.user.username
 
 
 class Chat(models.Model):

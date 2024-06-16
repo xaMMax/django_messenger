@@ -1,15 +1,12 @@
+from django.contrib.auth.middleware import get_user
 from django.utils import timezone
-from django.contrib.auth.models import User
-
-from messenger.models import UserProfile
+from django.utils.deprecation import MiddlewareMixin
 
 
-class ActiveUserMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
-
-    def __call__(self, request):
-        if request.user.is_authenticated:
-            UserProfile.objects.filter(user=request.user).update(last_activity=timezone.now())
-        response = self.get_response(request)
-        return response
+class UpdateLastActivityMiddleware(MiddlewareMixin):
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        user = get_user(request)
+        if user.is_authenticated:
+            user.userprofile.last_activity = timezone.now()
+            user.userprofile.save()
+        return None

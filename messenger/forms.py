@@ -10,8 +10,7 @@ class MessageForm(forms.ModelForm):
         model = Message
         fields = ['message']
         widgets = {
-            'message': forms.Textarea(attrs={'class': 'send_message_form'}),
-            # 'label': forms.Textarea(attrs={'class': 'random-color-text'}),
+            'message': forms.Textarea(attrs={'class': 'send_message_form', 'cols': 80, 'rows': 3}),
         }
 
 
