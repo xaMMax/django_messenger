@@ -241,7 +241,6 @@ class UserProfileView(LoginRequiredMixin, DetailView, FormView):
             context['received_messages'] = []
             context['sent_messages'] = PrivateMessage.objects.filter(sender=self.get_object())
 
-        # Отримання списку користувачів і перевірка їх статусу онлайн
         now = timezone.now()
         online_users = []
         offline_users = []
@@ -261,7 +260,10 @@ class UserProfileView(LoginRequiredMixin, DetailView, FormView):
     def form_valid(self, form):
         form.instance.sender = self.request.user
         form.save()
-        messages.success(self.request, 'Your message has been sent.')
+        if form.instance.recipient.is_superuser:
+            messages.success(self.request, 'Your message has been sent to superuser.')
+        else:
+            messages.success(self.request, 'Your message has been sent.')
         return super().form_valid(form)
 
     def get_success_url(self):

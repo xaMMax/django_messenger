@@ -1,9 +1,10 @@
-from django.dispatch import receiver
+from django.contrib import admin, messages
+from django.dispatch import receiver, Signal
 from django.db.models.signals import post_save, pre_save
 from django.contrib.auth import get_user_model, user_logged_in, user_logged_out
-from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
-from messenger.models import ActivityLog, UserProfile
+from messenger.models import ActivityLog, UserProfile, PrivateMessage
 
 User = get_user_model()
 
@@ -33,3 +34,14 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
 
+
+# @receiver(post_save, sender=PrivateMessage)
+# def notify_if_admin_on_message_creation(sender, instance, created, **kwargs):
+#     signal_sender = Signal()
+#     if created and instance.recipient.is_superuser:
+#         print('You successfully sent message to admin!')
+#         signal_sender.send(sender=super.__class__, instance=instance,
+#                            message='You have successfully sent message to admin!')
+#     else:
+#         print(f'You successfully sent message to {instance.recipient.username}!')
+#     pass

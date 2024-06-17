@@ -156,3 +156,5 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 SESSION_COOKIE_SECURE = False
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+

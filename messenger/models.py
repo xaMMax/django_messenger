@@ -52,7 +52,6 @@ class Message(models.Model):
             ("can_edit_message", "Can edit message"),
             ("can_delete_message", "Can delete message"),
         ]
-        # fields = ['chat', 'author', 'content', 'created_at', 'updated_at']
 
     def __str__(self):
         return f"{self.author.username}: {self.message[:20]}"

@@ -212,6 +212,7 @@ p {
     width: 100%;
 
 }
+
 .user_profile-main-menu {
     background-color: rgba(46, 109, 164, 0.55);
     flex-grow: 1;
@@ -220,6 +221,7 @@ p {
     border-radius: 8px;
     height: 100vh;
 }
+
 .block_link{
     display: block;
     padding: 10px;
@@ -231,9 +233,11 @@ p {
     transition: background-color 0.3s, color 0.3s;
     border-radius: 8px;
 }
+
 .block_link:hover{
     background-color: rgba(82, 163, 159, 0.27);
 }
+
 .user-profile-head {
     background-color: rgba(46, 109, 164, 0.55);
     flex-grow: 1;
@@ -241,16 +245,22 @@ p {
     padding: 16px;
     border-radius: 8px;
 }
-.user_profile-send-private-message{
+
+.user_profile-send-private-message {
     flex-grow: 1;
 }
-.user_profile-messages{
+
+.user_profile-messages {
     flex-grow: 1;
     display: flex;
-    justify-content: left; /* Горизонтальне центрування елементів */
-    align-items: start; /* Вертикальне центрування елементів */
+    justify-content: space-between;
+    align-items: start;
+    overflow-y: scroll;
+    position: relative;
+    height: 600px;
 }
-.user_profile-chat_participants{
+
+.user_profile-chat_participants {
     background-color: rgba(46, 109, 164, 0.55);
     flex-grow: 1;
     flex-direction: column;
