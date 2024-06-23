@@ -9,7 +9,7 @@ app = Celery('django_messenger_project')
 # Django settings
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
-# автоматично виявляйте завдання в усіх додатках Django
+# автоматичне виявлення завдань додатках Django
 app.autodiscover_tasks()
 
 

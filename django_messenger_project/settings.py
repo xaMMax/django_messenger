@@ -162,17 +162,24 @@ SESSION_COOKIE_SECURE = False
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
-from .celery import app
-app.conf.beat_schedule = {
-    'update-all-chats': {
-        'task': 'messenger_app.tasks.update_all_chats',
-        'schedule': crontab(minute='*/1'),
-    }
-}
-
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
+CELERYD_LOG_LEVEL = 'INFO'
+CELERYD_LOG_FORMAT = '[%(asctime)s: %(levelname)s/%(processName)s] %(message)s'
+CELERYD_TASK_LOG_FORMAT = '[%(asctime)s: %(levelname)s/%(processName)s] Task %(task_name)s[%(task_id)s]: %(message)s'
+
+CELERY_BEAT_SCHEDULE = {
+    'log-last-10-messages-every-5-minutes': {
+        'task': 'messenger_app.tasks.log_last_10_messages',
+        'schedule': 300.0,
+    },
+    'print_chats_profiles': {
+        'task': 'messenger_app.tasks.print_chats_profiles',
+        'schedule': 300.0,
+    }
+}
