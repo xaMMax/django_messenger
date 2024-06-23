@@ -1,0 +1,971 @@
+Watching for file changes with StatReloader
+/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/loki/PycharmProjects/django_messenger/messenger/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/loki/PycharmProjects/django_messenger/messenger/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 1233
+"GET / HTTP/1.1" 200 1233
+"GET /chat/7/ HTTP/1.1" 200 1767
+Internal Server Error: /chat/7/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 27, in add_message
+    messages = request._messages
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute '_messages'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 155, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/views.py", line 75, in form_valid
+    return super().form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 161, in form_valid
+    form.instance.save()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/signals.py", line 17, in log_message_and_notify_superuser
+    messages.success(instance.author, "Ви успішно надіслали повідомлення суперюзеру")
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 99, in success
+    add_message(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 30, in add_message
+    raise TypeError(
+TypeError: add_message() argument must be an HttpRequest object, not 'User'.
+"POST /chat/7/ HTTP/1.1" 500 126075
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /accounts/login/?redirect_to=/ HTTP/1.1" 200 1195
+"POST /accounts/login/?redirect_to=/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 1204
+Forbidden (Permission denied): /chat/create/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 108, in dispatch
+    return self.handle_no_permission()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 48, in handle_no_permission
+    raise PermissionDenied(self.get_permission_denied_message())
+django.core.exceptions.PermissionDenied
+"GET /chat/create/ HTTP/1.1" 403 135
+"GET /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 302 0
+"GET /accounts/login/?redirect_to=/ HTTP/1.1" 200 1195
+"POST /accounts/login/?redirect_to=/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 1233
+"GET /chat/create/ HTTP/1.1" 200 1137
+"POST /chat/create/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 1574
+"GET /chat/9/ HTTP/1.1" 200 1238
+Internal Server Error: /chat/9/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 27, in add_message
+    messages = request._messages
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute '_messages'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 155, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/views.py", line 75, in form_valid
+    return super().form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 161, in form_valid
+    form.instance.save()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/signals.py", line 17, in log_message_and_notify_superuser
+    messages.success(instance.author, "Ви успішно надіслали повідомлення суперюзеру")
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 99, in success
+    add_message(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 30, in add_message
+    raise TypeError(
+TypeError: add_message() argument must be an HttpRequest object, not 'User'.
+"POST /chat/9/ HTTP/1.1" 500 126090
+Internal Server Error: /chat/9/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 27, in add_message
+    messages = request._messages
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute '_messages'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 155, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/views.py", line 75, in form_valid
+    return super().form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 161, in form_valid
+    form.instance.save()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/signals.py", line 17, in log_message_and_notify_superuser
+    messages.success(instance.author, "Ви успішно надіслали повідомлення суперюзеру")
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 99, in success
+    add_message(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 30, in add_message
+    raise TypeError(
+TypeError: add_message() argument must be an HttpRequest object, not 'User'.
+"POST /chat/9/ HTTP/1.1" 500 126090
+"GET / HTTP/1.1" 200 1574
+"GET /chat/9/ HTTP/1.1" 200 1738
+"GET /message/44/edit/ HTTP/1.1" 200 1191
+Internal Server Error: /message/44/edit/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 121, in form_valid
+    return super().form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 98, in form_valid
+    return super().form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 136, in form_valid
+    return super().form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 65, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/http/response.py", line 616, in __init__
+    self["Location"] = iri_to_uri(redirect_to)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/utils/encoding.py", line 137, in iri_to_uri
+    iri = str(iri)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/utils/functional.py", line 155, in __text_cast
+    return func(*self.__args, **self.__kw)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'chat_detail' with keyword arguments '{'pk': 9}' not found. 2 pattern(s) tried: ['chat/(?P<chat_id>[0-9]+)/\\Z', 'messenger/chat/(?P<chat_id>[0-9]+)/\\Z']
+"POST /message/44/edit/ HTTP/1.1" 500 124624
+/Users/loki/PycharmProjects/django_messenger/messenger/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/loki/PycharmProjects/django_messenger/messenger/views.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/loki/PycharmProjects/django_messenger/messenger/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /message/44/edit/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 179, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 208, in post
+    return super().post(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 160, in form_valid
+    form.instance.chat = self.chat
+AttributeError: 'EditMessageView' object has no attribute 'chat'
+"POST /message/44/edit/ HTTP/1.1" 500 86818
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hide_chat' not found. 'hide_chat' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 190179
+/Users/loki/PycharmProjects/django_messenger/messenger/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'create_chat' not found. 'create_chat' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 157335
+/Users/loki/PycharmProjects/django_messenger/messenger/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 1574
+"GET /static/styles.css HTTP/1.1" 304 0
+"GET /chat/9/ HTTP/1.1" 200 1738
+Internal Server Error: /chat/9/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 27, in add_message
+    messages = request._messages
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/utils/functional.py", line 268, in inner
+    return func(_wrapped, *args)
+AttributeError: 'User' object has no attribute '_messages'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 155, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/edit.py", line 153, in post
+    return self.form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/views.py", line 75, in form_valid
+    return super().form_valid(form)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 162, in form_valid
+    form.instance.save()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/db/models/base.py", line 892, in save_base
+    post_save.send(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 176, in send
+    return [
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/dispatch/dispatcher.py", line 177, in <listcomp>
+    (receiver, receiver(signal=self, sender=sender, **named))
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/signals.py", line 16, in log_message_and_notify_superuser
+    messages.success(instance.author, "Ви успішно надіслали повідомлення суперюзеру")
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 99, in success
+    add_message(
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/messages/api.py", line 30, in add_message
+    raise TypeError(
+TypeError: add_message() argument must be an HttpRequest object, not 'User'.
+"POST /chat/9/ HTTP/1.1" 500 125739
+"GET /admin/auth/user/ HTTP/1.1" 200 12359
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/auth/ HTTP/1.1" 200 5576
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /admin/ HTTP/1.1" 200 9848
+"GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+"GET /admin/auth/group/ HTTP/1.1" 200 8392
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/auth/user/ HTTP/1.1" 200 12359
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/auth/user/1/change/ HTTP/1.1" 200 22554
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+"GET /admin/auth/user/1/history/ HTTP/1.1" 200 8012
+"GET /admin/messenger/message/ HTTP/1.1" 200 22666
+"GET /admin/jsi18n/ HTTP/1.1" 200 3343
+/Users/loki/PycharmProjects/django_messenger/messenger/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/loki/PycharmProjects/django_messenger/messenger/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/Users/loki/PycharmProjects/django_messenger/messenger/signals.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /chat/9/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 149, in dispatch
+    chat = get_object_or_404(Chat, pk=kwargs['chat_id'])
+KeyError: 'chat_id'
+"GET /chat/9/ HTTP/1.1" 500 69659
+/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /chat/9/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/contrib/auth/mixins.py", line 73, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py", line 153, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/detail.py", line 108, in get
+    self.object = self.get_object()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/views/generic/detail.py", line 46, in get_object
+    raise AttributeError(
+AttributeError: Generic detail view ChatDetailView must be called with either an object pk or a slug in the URLconf.
+"GET /chat/9/ HTTP/1.1" 500 83078
+/Users/loki/PycharmProjects/django_messenger/messenger/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /chat/9/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET /chat/9/ HTTP/1.1" 500 153250
+Internal Server Error: /chat/9/
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET /chat/9/ HTTP/1.1" 500 153250
+"GET /chat/9/ HTTP/1.1" 200 1920
+"GET /static/styles.css HTTP/1.1" 304 0
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hide_chat' not found. 'hide_chat' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 190170
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 238, in render
+    nodelist.append(node.render_annotated(context))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hide_chat' not found. 'hide_chat' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 189970
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 158488
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 158488
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 158488
+/Users/loki/PycharmProjects/django_messenger/messenger/mixins.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 158488
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 158488
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Users/loki/PycharmProjects/django_messenger/.venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'hidden_chats' not found. 'hidden_chats' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 158488
+/Users/loki/PycharmProjects/django_messenger/messenger/views.py changed, reloading.
