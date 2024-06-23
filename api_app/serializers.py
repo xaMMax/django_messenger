@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from messenger.models import Chat, Message
+from messenger_app.models import Chat, Message
 from django.contrib.auth.models import User
 
 

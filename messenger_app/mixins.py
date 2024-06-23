@@ -8,8 +8,8 @@ from django.utils import timezone
 
 from django.views.generic import ListView, CreateView, FormView
 
-from messenger.forms import ChatForm, AddUserForm
-from messenger.models import Chat, Message, HiddenChat
+from messenger_app.forms import ChatForm, AddUserForm
+from messenger_app.models import Chat, Message, HiddenChat
 
 
 class ChatListMixin(LoginRequiredMixin, ListView):
@@ -44,8 +44,8 @@ class ChatDetailMixin(LoginRequiredMixin):
 
 
 class CreateChatMixin(PermissionRequiredMixin, CreateView):
-    permission_required = 'messenger.can_create_chat'
-    template_name = 'messenger/create_chat.html'
+    permission_required = 'messenger_app.can_create_chat'
+    template_name = 'messenger_app/create_chat.html'
     form_class = ChatForm
 
     def form_valid(self, form):
@@ -55,8 +55,8 @@ class CreateChatMixin(PermissionRequiredMixin, CreateView):
 
 
 class AddUserToChatMixin(PermissionRequiredMixin, FormView):
-    permission_required = 'messenger.can_add_users'
-    template_name = 'messenger/add_user.html'
+    permission_required = 'messenger_app.can_add_users'
+    template_name = 'messenger_app/add_user.html'
     form_class = AddUserForm
 
     def dispatch(self, request, *args, **kwargs):

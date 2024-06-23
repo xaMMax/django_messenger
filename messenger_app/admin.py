@@ -1,7 +1,7 @@
 from django.contrib import admin, messages
 from django.contrib.auth.models import User
 
-from messenger.models import Message, Chat, HiddenChat, ForgottenPasswordRequest, ActivityLog, PrivateMessage, \
+from messenger_app.models import Message, Chat, HiddenChat, ForgottenPasswordRequest, ActivityLog, PrivateMessage, \
     UserProfile
 
 

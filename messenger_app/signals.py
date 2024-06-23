@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, pre_save
 from django.contrib.auth import get_user_model, user_logged_in, user_logged_out
 from django.utils.translation import gettext_lazy as _
 
-from messenger.models import ActivityLog, UserProfile, PrivateMessage
+from messenger_app.models import ActivityLog, UserProfile, PrivateMessage
 
 User = get_user_model()
 

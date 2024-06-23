@@ -1,5 +1,5 @@
 """
-ASGI config for django_messenger project.
+ASGI config for django_messenger_project project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -12,9 +12,9 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 from django.core.asgi import get_asgi_application
 from django.urls import path
-from messenger import consumers
+from messenger_app import consumers
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_messenger.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_messenger_project.settings')
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),

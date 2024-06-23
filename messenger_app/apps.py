@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class MessengerConfig(AppConfig):
+class MessengerAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'messenger'
+    name = 'messenger_app'
 
     def ready(self):
-        import messenger.signals
+        import messenger_app.signals

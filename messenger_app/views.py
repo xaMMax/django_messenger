@@ -90,7 +90,7 @@ class RegistrationView(View):
 
 class ChatListView(ChatListMixin, ListView):
     model = Chat
-    template_name = 'messenger/chat_list.html'
+    template_name = 'messenger_app/chat_list.html'
     context_object_name = 'chats'
 
     def get_context_data(self, **kwargs):
@@ -104,7 +104,7 @@ class ChatListView(ChatListMixin, ListView):
 
 class HiddenChatListView(ChatListMixin, ListView):
     model = Chat
-    template_name = 'messenger/hidden_chats.html'
+    template_name = 'messenger_app/hidden_chats.html'
     context_object_name = 'chats'
 
     def get_context_data(self, **kwargs):
@@ -136,7 +136,7 @@ def unhide_chat(request, chat_id):
 
 class ChatDetailView(ChatDetailMixin, DetailView):
     model = Chat
-    template_name = 'messenger/chat_detail.html'
+    template_name = 'messenger_app/chat_detail.html'
     context_object_name = 'chat'
     pk_url_kwarg = 'pk'
 
@@ -180,7 +180,7 @@ class CreateChatView(LoginRequiredMixin, FormInitialDataMixin, CreateChatMixin, 
 class DeleteChatView(LoginRequiredMixin, SuperuserRequiredMixin, DeleteView):
     model = Chat
     success_url = reverse_lazy('chat_list')
-    template_name = 'messenger/chat_confirm_delete.html'
+    template_name = 'messenger_app/chat_confirm_delete.html'
 
 
 class AddUserToChatView(LoginRequiredMixin, AddUserToChatMixin):
@@ -190,7 +190,7 @@ class AddUserToChatView(LoginRequiredMixin, AddUserToChatMixin):
 class EditMessageView(UpdateTimestampMixin, EditMessageMixin, UpdateView):
     model = Message
     form_class = MessageForm
-    template_name = 'messenger/edit_message.html'
+    template_name = 'messenger_app/edit_message.html'
     pk_url_kwarg = 'message_id'
 
     def get_success_url(self):
@@ -199,7 +199,7 @@ class EditMessageView(UpdateTimestampMixin, EditMessageMixin, UpdateView):
 
 class DeleteMessageView(DeleteMessageMixin, DeleteView):
     model = Message
-    template_name = 'messenger/delete_message.html'
+    template_name = 'messenger_app/delete_message.html'
     pk_url_kwarg = 'message_id'
 
     def get_success_url(self):
@@ -227,7 +227,7 @@ class ChatMessagesJSONView(LoginRequiredMixin, AdminRequiredMixin, JSONResponseM
 
 class UserProfileView(LoginRequiredMixin, DetailView, FormView):
     model = User
-    template_name = 'messenger/user_profile.html'
+    template_name = 'messenger_app/user_profile.html'
     context_object_name = 'user_profile'
     form_class = PrivateMessageForm
 

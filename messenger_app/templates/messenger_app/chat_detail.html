@@ -34,7 +34,7 @@
                     </ul>
                 </div>
                     <div class="chat_participants">
-                    {% include "messenger/user_status.html" %}
+                    {% include "messenger_app/user_status.html" %}
                     </div>
             </div>
 
@@ -51,7 +51,7 @@
             </div>
         <!-- /.chat_partisipants -->
         <div class="actions">
-            {% if request.user|has_permission:'messenger.can_add_users' %}
+            {% if request.user|has_permission:'messenger_app.can_add_users' %}
                 <a href="{% url 'add_user_to_chat' pk=chat.pk %}">Add user to chat</a>
             {% endif %}
             {% if user.is_staff %}

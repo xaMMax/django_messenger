@@ -1,5 +1,5 @@
 """
-URL configuration for django_messenger project.
+URL configuration for django_messenger_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -18,15 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
-from messenger.views import RegistrationView, NewLoginView, ForgotPasswordView, logout_view
+from messenger_app.views import RegistrationView, NewLoginView, ForgotPasswordView, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('messenger.urls')),
-    path('messenger/', include('messenger.urls')),
+    path('', include('messenger_app.urls')),
+    path('messenger_app/', include('messenger_app.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('logout/', logout_view, name='logout'),
     path('login/', NewLoginView.as_view(), name='login'),
-    path('api/', include('api.urls')),
+    path('api_app/', include('api_app.urls')),
 
 ]
